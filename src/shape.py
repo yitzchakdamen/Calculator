@@ -11,9 +11,9 @@ class Shape(ABC):
     def __init__(self,*args):
         for arg in args:
             if not isinstance(arg, (int, float)):
-                raise TypeError("Width and length must be integers or floats.")
+                raise TypeError("must be integers or floats.")
             elif arg <= 0:
-                raise ValueError("Width and length must be positive numbers.")
+                raise ValueError("must be positive numbers.")
 
     @abstractmethod
     def __str__(self):
@@ -71,8 +71,7 @@ class Shape(ABC):
         else: return NotImplemented
     
     def __le__(self, other):	#To get called on comparison using <= operator.
-        if isinstance(other, Shape): 
-            return self.get_area() <= other.get_area()
+        if isinstance(other, Shape): return self.get_area() <= other.get_area()
         else: return NotImplemented
     
     def __eq__(self, other):	#To get called on comparison using == operator.
@@ -80,7 +79,7 @@ class Shape(ABC):
         else: return NotImplemented
     
     def __ne__(self, other):	#To get called on comparison using != operator.
-        return self.__eq__(other)
+        return not self.__eq__(other)
     
     def __ge__(self, other):	#To get called on comparison using >= operator.
         if isinstance(other, Shape): return not self.get_area() >= other.get_area()
