@@ -1,4 +1,4 @@
-from src.calculator import Rectangle, Triangle, Circle, Square
+from src.calculator import Rectangle, RightAngledTriangle, Circle, Square
 from menu import menu
 
 def main():
