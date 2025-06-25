@@ -1,5 +1,5 @@
 from math import pi, sqrt
-from shape import Shape
+from src.shape import Shape
 
 
 
@@ -194,4 +194,4 @@ class Hexagon(EquilateralTriangle):
     
 
 if __name__ == "__main__":
-    print(EquilateralTriangle(4))
+    print(EquilateralTriangle(4) + EquilateralTriangle(4))

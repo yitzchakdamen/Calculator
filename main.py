@@ -1,13 +1,7 @@
-from src.calculator import Rectangle, RightAngledTriangle, Circle, Square
 from menu import menu
 
 def main():
-    print("Hello, world!")
-    c = Rectangle(10, 12)
-    print(c)
-    print(repr(c))
-    print(c.get_area())
-    
+    print("\n_____ Welcome to shape Calculator _____\n")
     menu().start()
 
 if __name__ == "__main__":
