@@ -1,0 +1,74 @@
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    def __new__(cls, width, Length):
+        print (f"__new__ magic method is called by {cls.__name__}")
+        inst = object.__new__(cls)
+        return inst
+    
+    @abstractmethod
+    def __str__(self):
+        pass
+    
+    @abstractmethod
+    def __repr__(self):
+       pass
+   
+    @abstractmethod
+    def get_area(self):
+        pass
+
+    def __add__(self, other:Shape):	#To get called on add operation using + operator
+        if isinstance(other, Shape): return self.get_area() + other.get_area()
+        else: return NotImplemented
+    
+    def __sub__(self, other):	#To get called on subtraction operation using - operator.
+        if isinstance(other, Shape): return self.get_area() - other.get_area()
+        else: return NotImplemented
+    
+    def __mul__(self, other):	#To get called on multiplication operation using * operator.
+        if isinstance(other, Shape): return self.get_area() * other.get_area()
+        else: return NotImplemented
+    
+    def __floordiv__(self, other):	#To get called on floor division operation using // operator.
+        if isinstance(other, Shape): return self.get_area() // other.get_area()
+        else: return NotImplemented
+    
+    def __truediv__(self, other):	#To get called on division operation using / operator.
+        if isinstance(other, Shape): return self.get_area() / other.get_area()
+        else: return NotImplemented
+    
+    def __mod__(self, other):	#To get called on modulo operation using % operator.
+        if isinstance(other, Shape): return self.get_area() % other.get_area()
+        else: return NotImplemented
+    
+    def __pow__(self, other):	#To get called on calculating the power using ** operator.
+        if isinstance(other, Shape): return self.get_area() ** other.get_area()
+        else: return NotImplemented
+    
+    def __lt__(self, other):	#To get called on comparison using < operator.
+        if isinstance(other, Shape): return self.get_area() < other.get_area()
+        else: return NotImplemented
+
+    def __gt__(self, other):	#To get called on comparison using > operator.
+        if isinstance(other, Shape): return self.get_area() > other.get_area()
+        else: return NotImplemented
+    
+    def __le__(self, other):	#To get called on comparison using <= operator.
+        if isinstance(other, Shape): return self.get_area() <= other.get_area()
+        else: return NotImplemented
+    
+    def __eq__(self, other):	#To get called on comparison using == operator.
+        if isinstance(other, Shape): return self.get_area() == other.get_area()
+        else: return NotImplemented
+    
+    def __ne__(self, other):	#To get called on comparison using != operator.
+        if isinstance(other, Shape): return self.get_area() != other.get_area()
+        else: return NotImplemented
+    
+    def __ge__(self, other):	#To get called on comparison using >= operator.
+        if isinstance(other, Shape): return self.get_area() >= other.get_area()
+        else: return NotImplemented
+    
+    
