@@ -27,13 +27,14 @@ class menu:
     def start(self):
         while True:
             print("=" * 10)
-            print("1) Calculating shapes\n2) creating shapes\n3) Exit ")
+            print("1) Calculating shapes\n2) creating shapes\n3) Calculations between shapes\n4) Exit ")
             print("=" * 10)
 
             match input("Select a option: "):
                 case "1": self.shapes_calculation_menu()
                 case "2": self.creating_shape_menu()
-                case "3": break
+                case "3": print(self.between_shapes_calculation())
+                case "4": break
                 case _ : print("Invalid input")
                 
         print("Goodbye")
@@ -41,29 +42,65 @@ class menu:
         
     def shapes_calculation_menu(self):
         while True:
-            print("=" * 10)
-            for i in ShapeType: print(i.value,")", i.name)
-            print("=" * 10)
+            self.print_shapes()
 
             select = input("Select a shape: ")
             match select:
-                case "1" | "2" | "3" | "4" | "5" | "6":return self.Calculation(ShapeType(int(select)))
+                case "1" | "2" | "3" | "4" | "5" | "6":
+                    return self.Calculation(ShapeType(int(select)))
                 case _ : print("Invalid input")
     
     def creating_shape_menu(self):
         while True:
-            print("=" * 10)
-            for i in ShapeType: print(i.value,")", i.name)
-            print("=" * 10)
+            self.print_shapes()
 
             select = input("Select a shape type to create: ")
             match select:
                 case "1" | "2" | "3" | "4" | "5" | "6":
-                    print(f"Creating a {ShapeType(int(select)).name}...")
-                    shape = self.creating_shape(ShapeType(int(select)))
-                    self.shapes[ShapeType(int(select))] =shape
+                    Shape_Type: ShapeType = ShapeType(int(select))
+                    print(f"Creating a {Shape_Type.name}...")
+                    shape = self.creating_shape(Shape_Type)
+                    self.shapes[Shape_Type] =shape
                     return
                 case _ : print("Invalid input")
+                
+    def between_shapes_calculation(self):
+            self.print_shapes()
+
+            select = input("Select 2 shape to calculate and a operation between ( 1 + 2) or ( 3 == 2) or ( 4 * 2) or ( 1 > 2) : ")
+            select = select.strip().split(" ")
+            try:
+                match select[1]:
+                    case "+": 
+                        return self.shapes[ShapeType(int(select[0]))] + self.shapes[ShapeType(int(select[2]))]
+                    case "-": 
+                        return self.shapes[ShapeType(int(select[0]))] - self.shapes[ShapeType(int(select[2]))]
+                    case "*": 
+                        return self.shapes[ShapeType(int(select[0]))] * self.shapes[ShapeType(int(select[2]))]
+                    case "/": 
+                        return self.shapes[ShapeType(int(select[0]))] / self.shapes[ShapeType(int(select[2]))]
+                    case "%": 
+                        return self.shapes[ShapeType(int(select[0]))] % self.shapes[ShapeType(int(select[2]))]
+                    case "**": 
+                        return self.shapes[ShapeType(int(select[0]))] ** self.shapes[ShapeType(int(select[2]))]
+                    case "//": 
+                        return self.shapes[ShapeType(int(select[0]))] // self.shapes[ShapeType(int(select[2]))]
+                    case ">": 
+                        return self.shapes[ShapeType(int(select[0]))] > self.shapes[ShapeType(int(select[2]))]
+                    case "<": 
+                        return self.shapes[ShapeType(int(select[0]))] < self.shapes[ShapeType(int(select[2]))]
+                    case ">=": 
+                        return self.shapes[ShapeType(int(select[0]))] >= self.shapes[ShapeType(int(select[2]))]
+                    case "<=": 
+                        return self.shapes[ShapeType(int(select[0]))] <= self.shapes[ShapeType(int(select[2]))]
+                    case "==": 
+                        return self.shapes[ShapeType(int(select[0]))] == self.shapes[ShapeType(int(select[2]))]
+                    case "!=": 
+                        return self.shapes[ShapeType(int(select[0]))] != self.shapes[ShapeType(int(select[2]))]
+                    case _ : print("Invalid input")
+            except:
+                print("Invalid input")
+
                 
     def creating_shape(self, shapeType:ShapeType):
         match shapeType:
@@ -104,7 +141,10 @@ class menu:
             try: return float(vel)
             except: print("Invalid input")
 
-
+    def print_shapes(self):
+        print("=" * 10)
+        for i in ShapeType: print(i.value,")", i.name)
+        print("=" * 10)
 
     def analyze_init(self,cls):
 
