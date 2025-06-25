@@ -1,5 +1,5 @@
 from enum import Enum
-from src.calculator import Rectangle, Triangle, Circle, Square
+from src.calculator import Rectangle, RightAngledTriangle, Circle, Square
 
 class ShapeType(Enum):
     RECTANGLE = 1
