@@ -60,6 +60,12 @@ __pycache__/
     print("🚫 Created .gitignore to ignore venv and other common files")
 
     print("\n🚀 Project setup complete!")
+    
+    
+    print("\n📌 To activate the virtual environment:")
+    print(r"   venv\Scripts\activate")
+
+
 
 if __name__ == "__main__":
     project_name = input("Enter your project name: ")
