@@ -33,16 +33,16 @@ class menu:
             match input("Select a option: "):
                 case "1": self.shapes_calculation_menu()
                 case "2": self.creating_shape_menu()
-                case "3": print(self.between_shapes_calculation())
+                case "3": print(self.between_shapes_calculation() or "")
                 case "4": break
                 case _ : print("Invalid input")
                 
-        print("Goodbye")
+        print("\nGoodbye")
         
         
     def shapes_calculation_menu(self):
         while True:
-            self.print_shapes()
+            if not self.print_shapes_exist(): return
 
             select = input("Select a shape: ")
             match select:
@@ -65,10 +65,9 @@ class menu:
                 case _ : print("Invalid input")
                 
     def between_shapes_calculation(self):
-            self.print_shapes()
+            if not self.print_shapes_exist(): return
 
-            select = input("Select 2 shape to calculate and a operation between ( 1 + 2) or ( 3 == 2) or ( 4 * 2) or ( 1 > 2) : ")
-            select = select.strip().split(" ")
+            select = input("Select 2 shape to calculate and a operation between separated by space, like ( 1 + 2) or ( 3 == 2) etc : ").strip().split(" ")
             try:
                 match select[1]:
                     case "+": 
@@ -142,9 +141,20 @@ class menu:
             except: print("Invalid input")
 
     def print_shapes(self):
-        print("=" * 10)
+        print("\n","=" * 10)
         for i in ShapeType: print(i.value,")", i.name)
-        print("=" * 10)
+        print("\n","=" * 10)
+    
+    def print_shapes_exist(self):
+        exist = False
+        print("\n","=" * 10)
+        for i in ShapeType: 
+            if self.shapes[i] is not None: 
+                print(i.value,")", i.name)
+                exist = True
+        print("=" * 10, "\n")
+        if not exist: print("No shapes exist")
+        return exist
 
     def analyze_init(self,cls):
 
