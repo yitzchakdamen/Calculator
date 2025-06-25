@@ -194,4 +194,4 @@ class Hexagon(EquilateralTriangle):
     
 
 if __name__ == "__main__":
-    print(EquilateralTriangle(4) + EquilateralTriangle(4))
+    pass
