@@ -1,5 +1,6 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+import inspect
 
 class Shape(ABC):
     
@@ -9,19 +10,21 @@ class Shape(ABC):
         return inst
     
     def __init__(self,*args):
-        for arg in args:
+        self.args = args
+        for arg in self.args:
             if not isinstance(arg, (int, float)):
                 raise TypeError("must be integers or floats.")
             elif arg <= 0:
                 raise ValueError("must be positive numbers.")
 
-    @abstractmethod
     def __str__(self):
-        pass
+        sig = inspect.signature(self.__class__.__init__)
+        params = list(sig.parameters.keys())[1:]
+        args_dict = {name: getattr(self, name, "") for name in params}
+        return f"shape {self.__class__.__name__} with --- {", ".join(f"{kye}: {val}" for kye, val in args_dict.items() if kye != 'args')}"
     
-    @abstractmethod
     def __repr__(self):
-       pass
+       return f"{self.__class__.__name__} {self.args}"
    
     @abstractmethod
     def get_area(self):

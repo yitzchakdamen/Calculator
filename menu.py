@@ -60,6 +60,7 @@ class menu:
                     Shape_Type: ShapeType = ShapeType(int(select))
                     print(f"Creating a {Shape_Type.name}...")
                     shape = self.creating_shape(Shape_Type)
+                    print(f"{shape} is created")
                     self.shapes[Shape_Type] =shape
                     return
                 case _ : print("Invalid input")
@@ -97,7 +98,7 @@ class menu:
                     case "!=": 
                         return self.shapes[ShapeType(int(select[0]))] != self.shapes[ShapeType(int(select[2]))]
                     case _ : print("Invalid input")
-            except:
+            except Exception as e:
                 print("Invalid input")
 
                 
