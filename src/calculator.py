@@ -8,13 +8,7 @@ class Rectangle(Shape):
     def __init__(self, width, length, *args):
         super().__init__(width, length, *args)
         self.width = width
-        self.Length = length
-        
-    def __str__(self):
-        return f"{self.__class__.__name__} with ---  width: {self.width},  Length: {self.Length}"
-    
-    def __repr__(self):
-        return f"{self.__class__.__name__}( {self.width}, {self.Length} )"
+        self.length = length
     
     def get_area(self):
         """
@@ -23,7 +17,7 @@ class Rectangle(Shape):
         Returns:
             float: The area of the rectangle, calculated as width times height.
         """
-        return self.width * self.Length
+        return self.width * self.length
     
     def get_perimeter(self): 
         """
@@ -32,7 +26,7 @@ class Rectangle(Shape):
         Returns:
             float: The perimeter of the rectangle, calculated as twice the sum of the width and length.
         """
-        return 2 * (self.width + self.Length)
+        return 2 * (self.width + self.length)
     
 
 class Square(Rectangle):
@@ -59,12 +53,6 @@ class RightAngledTriangle(Rectangle):
             
         super().__init__(legs , legs, hypotenuse)
         self.hypotenuse = hypotenuse
-        
-    def __str__(self):
-        return f"{self.__class__.__name__} with ---  Legs: ({self.width}, {self.Length}),  Hypotenuse: { round(self.hypotenuse, 2)}"
-    
-    def __repr__(self):
-        return f"{self.__class__.__name__}( {self.width}, {self.hypotenuse} )"
     
     def get_area(self):
         """
@@ -84,7 +72,7 @@ class RightAngledTriangle(Rectangle):
         Returns:
             float: The perimeter of the triangle, calculated as the sum of the two legs and the hypotenuse.
         """
-        return self.Length + self.width + self.hypotenuse
+        return self.length + self.width + self.hypotenuse
 
         
 class Circle(Shape):
@@ -92,12 +80,6 @@ class Circle(Shape):
     def __init__(self, radius):
         super().__init__(radius)
         self.radius = radius
-    
-    def __str__(self):
-        return f"{self.__class__.__name__} with ---  radius: {self.radius}"
-    
-    def __repr__(self):
-        return f"{self.__class__.__name__}( {self.radius} )"
     
     def get_area(self):
         """
@@ -122,12 +104,6 @@ class EquilateralTriangle(RightAngledTriangle):
     
     def __init__(self, Side ):
         super().__init__(Side, Side)
-        
-    def __str__(self):
-        return f"{self.__class__.__name__} with ---  Side:( {f"{self.width}, " * 3 } )"
-    
-    def __repr__(self):
-        return f"{self.__class__.__name__}( {self.width} )"
     
     def get_area(self):
         """
@@ -165,9 +141,6 @@ class Hexagon(EquilateralTriangle):
     def __init__(self,Side):
         super().__init__(Side)
     
-    def __str__(self):
-        return f"{self.__class__.__name__} with ---  Side:( {f"{self.width}, " * 6 } )"
-    
     def get_area(self):
         """
         Calculate the area of the hexagon.
@@ -194,4 +167,4 @@ class Hexagon(EquilateralTriangle):
     
 
 if __name__ == "__main__":
-    pass
+    print(Rectangle(2, 3))
